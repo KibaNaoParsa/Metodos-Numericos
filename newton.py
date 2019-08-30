@@ -30,6 +30,9 @@ def newton(funcao, funcao_d, x0, tol=1e-6, k_max=100, mostrar=False):
             print(modelo.format(k, xk, fxk, delta_x))
         if abs(delta_x) < tol and abs(fxk) < tol:
             break
-        delta_x = - fxk / funcao_d (xk)
+        try:
+			delta_x = - fxk / funcao_d (xk)
+        except:
+			raise ValueError("Requer que: 'funcao_d' seja nao nula")
         k = k + 1
     return xk
